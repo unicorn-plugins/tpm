@@ -174,7 +174,7 @@ TPM은 **Claude Code CLI**와 **DMAP Web** 두 가지 방식으로 사용할 수
 ```bash
 # DMAP Web 저장소 클론
 git clone https://github.com/unicorn-plugins/dmap.git
-cd dmap
+cd dmap/dmap-web
 
 # 의존성 설치 및 실행
 npm install
