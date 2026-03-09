@@ -129,20 +129,27 @@ user-invocable: true
 
 ### Phase 9: 컨셉 이미지 생성 → Agent: visual-creator (`ulw` 활용)
 
-- **TASK**: 핵심 공연 컨셉을 반영한 포스터/무드보드 이미지 및 핵심 장면 이미지 생성
-- **EXPECTED OUTCOME**: `output/{작품명}/images/concept-poster.png` + `output/{작품명}/images/scene-01.png` (최소 2장)
-- **MUST DO**: `--api-key` 파라미터로 GEMINI_API_KEY 전달하여 generate_image.py 실행. 실행 명령: `python gateway/tools/generate_image.py --api-key {GEMINI_API_KEY} --prompt "{프롬프트}" --output-dir output/{작품명}/images --output-name {파일명}`
+- **TASK**: 핵심 공연 컨셉을 반영한 포스터/무드보드 이미지 및 실연 주요 장면 이미지 생성
+- **EXPECTED OUTCOME**: `output/{작품명}/images/concept-poster.png` (1장) + `output/{작품명}/images/scene-{n}.png` (최소 3장) + 각 장면별 제목·설명 목록
+- **MUST DO**:
+  - `--api-key` 파라미터로 GEMINI_API_KEY 전달하여 generate_image.py 실행
+  - 장면 이미지는 극적 흐름(오프닝→갈등→클라이맥스→피날레) 기준으로 최소 3개 선정하여 각각 생성
+  - 각 장면 이미지 생성 후 장면 번호·제목·설명(1~2문장)을 목록으로 정리하여 반환
 - **MUST NOT DO**: 기획서 내용 수정 금지, 네트워크 접근 금지
 - **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/06-core-concept.md`, GEMINI_API_KEY 값
-- **이미지 생성 실패 시**: "GEMINI_API_KEY 미설정으로 이미지 생성을 건너뜁니다. `/tpm:setup`을 실행하여 API 키를 설정하세요." 안내 후 Phase 10으로 진행
+- **이미지 생성 실패 시**: "GEMINI_API_KEY 미설정으로 이미지 생성을 건너뜁니다. `/tpm:setup`을 실행하여 API 키를 설정하세요." 안내 후 Phase 10으로 진행 (장면 설명 텍스트만 전달)
 
 ### Phase 10: 프레젠테이션 구성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
 
-- **TASK**: 기획 제안서를 경영진 발표용 9슬라이드 개요로 변환
-- **EXPECTED OUTCOME**: `output/{작품명}/10-presentation-{작품명}.md` — 9슬라이드 구조 PPT 개요
-- **MUST DO**: `resources/templates/presentation-outline-template.md` 템플릿 준수 / 이미지 삽입 위치 표시 / 핵심 컨셉 및 방향성 강조
+- **TASK**: 기획 제안서를 경영진 발표용 10슬라이드 개요로 변환
+- **EXPECTED OUTCOME**: `output/{작품명}/10-presentation-{작품명}.md` — 10슬라이드 구조 PPT 개요 (주요 장면 슬라이드 포함)
+- **MUST DO**:
+  - `resources/templates/presentation-outline-template.md` 템플릿 준수
+  - 이미지 삽입 위치 표시
+  - 핵심 컨셉 및 방향성 강조
+  - **주요 장면 슬라이드**: Phase 9에서 전달받은 장면 이미지 경로와 설명을 활용하여, 각 장면 이미지 + 장면 제목 + 설명(1~2문장)을 슬라이드에 포함
 - **MUST NOT DO**: 기획서 원본 수정 금지
-- **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/04-direction.md`, Phase 9 이미지 경로 목록, `resources/templates/presentation-outline-template.md`
+- **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/04-direction.md`, Phase 9 이미지 경로 및 장면별 설명 목록, `resources/templates/presentation-outline-template.md`
 
 ### Phase 11: 완료 보고
 
