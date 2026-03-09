@@ -143,10 +143,10 @@ user-invocable: true
 - **EXPECTED OUTCOME**: `output/{작품명}/images/concept-poster.png` (1장) + `output/{작품명}/images/overview-concept.png` (1장) + `output/{작품명}/images/scene-{n}.png` (최소 3장) + 각 이미지별 제목·설명 목록
 - **MUST DO**:
   - `--api-key` 파라미터로 GEMINI_API_KEY 전달하여 generate_image.py 실행
-  - `overview-concept.png`: 제안서 1.작품개요 + 2.기획의도의 **실제 내용**(작품 장르·대상 관객·핵심 장면·기획 배경·차별화 포인트)을 한 장의 비주얼로 표현. 작품의 정체성과 기획 의도가 명확히 전달되도록 구체적인 캐릭터·상황·감정을 담아 생성 (고객용 제안서·프레젠테이션에 활용)
-  - 장면 이미지는 극적 흐름(오프닝→갈등→클라이맥스→피날레) 기준으로 최소 3개 선정하여 각각 생성
+  - `overview-concept.png`: 제안서 1.작품개요 + 2.기획의도의 핵심 내용을 **인포그래픽 방식으로 도식화**. 도형(원·박스·화살표)·아이콘·섹션 레이아웃을 활용하여 작품 장르·대상·핵심 특징·기획 배경·차별화 포인트를 한 장에 구조적으로 배치. **한글 텍스트 레이블 포함** — 아이콘 옆에 한글 라벨(예: "50분", "초등 1~4학년", "화재·교통·지진", "OX 리포트", "어린이 참여형 뮤지컬")을 추가하여 내용이 명확히 전달되도록 함.
+  - 장면 이미지(scene-*)는 극적 흐름(오프닝→갈등→클라이맥스→피날레) 기준으로 최소 3개 선정하여 각각 생성
   - 각 이미지 생성 후 번호·제목·설명(1~2문장)을 목록으로 정리하여 반환
-  - **모든 이미지 프롬프트는 영어로 작성, 이미지 내 텍스트/한글 삽입 금지**
+  - **이미지 프롬프트는 영어로 작성. overview-concept는 한글 텍스트 레이블 포함. scene-* 이미지는 텍스트 삽입 금지.**
 - **MUST NOT DO**: 기획서 내용 수정 금지, 네트워크 접근 금지
 - **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/06-core-concept.md`, GEMINI_API_KEY 값
 - **이미지 생성 실패 시**: "GEMINI_API_KEY 미설정으로 이미지 생성을 건너뜁니다. `/tpm:setup`을 실행하여 API 키를 설정하세요." 안내 후 Phase 10으로 진행 (장면 설명 텍스트만 전달)
@@ -165,14 +165,23 @@ user-invocable: true
 
 ### Phase 11: 고객용 제안서 작성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
 
-- **TASK**: 내부 기획 제안서를 바탕으로 고객(공연 관람객·구매자)을 설득하는 외부용 제안서 작성
-- **EXPECTED OUTCOME**: `output/{작품명}/11-customer-proposal-{작품명}.md` — 작품 매력·관람 가치·감동 포인트 중심의 고객용 제안서
+- **TASK**: 내부 기획 제안서를 바탕으로 고객(공연 관람객·구매자)을 설득하는 외부용 제안서 작성. **최종 산출물은 MS Word(.docx) 파일로 이미지 포함 출력**
+- **EXPECTED OUTCOME**:
+  - `output/{작품명}/proposal-client-{작품명}.md` — 마크다운 초안 (이미지 경로 참조 포함)
+  - `output/{작품명}/proposal-client-{작품명}.docx` — **이미지가 삽입된 MS Word 파일** (최종 납품물)
 - **MUST DO**:
   - `resources/templates/customer-proposal-template.md` 템플릿 준수
-  - `overview-concept.png`를 표지/작품소개 섹션에 삽입
   - 주요 장면 이미지(scene-{n}.png)와 장면 설명을 활용하여 관람 포인트 강조
   - 언어 톤: 감성적·설득적 (경영 수치, BEP, 내부 예산 상세 제외)
-- **MUST NOT DO**: 내부 예산 상세·BEP·내부 마케팅 전략 노출 금지 / 기획서 원본 수정 금지
+  - **마크다운 저장 후 반드시 아래 명령으로 Word 변환 실행**:
+    ```bash
+    python gateway/tools/generate_docx.py \
+      --input output/{작품명}/proposal-client-{작품명}.md \
+      --output output/{작품명}/proposal-client-{작품명}.docx \
+      --image-base output/{작품명}/images
+    ```
+  - `.docx` 파일 생성 확인 (파일 크기 10KB 이상) 후 완료 보고
+- **MUST NOT DO**: 내부 예산 상세·BEP·내부 마케팅 전략 노출 금지 / 기획서 원본 수정 금지 / Word 변환 생략 금지
 - **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/06-core-concept.md`, Phase 9 이미지 경로 및 설명 목록, `resources/templates/customer-proposal-template.md`
 
 ### Phase 12: 고객용 프레젠테이션 구성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
@@ -208,7 +217,8 @@ user-invocable: true
 - 내부 프레젠테이션:       output/{작품명}/10-presentation-{작품명}.md
 
 ### 고객용 (외부)
-- 고객용 제안서:           output/{작품명}/11-customer-proposal-{작품명}.md
+- 고객용 제안서 (마크다운): output/{작품명}/proposal-client-{작품명}.md
+- 고객용 제안서 (Word):    output/{작품명}/proposal-client-{작품명}.docx  ← 이미지 삽입 최종본
 - 고객용 프레젠테이션:     output/{작품명}/12-customer-presentation-{작품명}.md
 
 ### 이미지

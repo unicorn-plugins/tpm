@@ -37,6 +37,21 @@ description: 공연 기획 제안서 및 프레젠테이션 개요 문서 작성
 4. 생성된 이미지 삽입 위치를 슬라이드에 표시
 5. `{tool:file_write}`로 `output/06-presentation-{작품명}.md` 저장
 
+### 고객용 제안서 작성 (Phase 11) — Word 출력
+
+1. `{tool:file_read}`로 내부 기획 제안서·핵심 컨셉 파일 로드
+2. `{tool:file_read}`로 `resources/templates/customer-proposal-template.md` 로드
+3. 고객 언어(교사·학부모)로 제안서 마크다운 초안 작성
+4. `{tool:file_write}`로 `output/{작품명}/proposal-client-{작품명}.md` 저장
+5. **[필수] Word 변환**: Bash 도구로 아래 명령 실행:
+   ```bash
+   python gateway/tools/generate_docx.py \
+     --input output/{작품명}/proposal-client-{작품명}.md \
+     --output output/{작품명}/proposal-client-{작품명}.docx \
+     --image-base output/{작품명}/images
+   ```
+6. `.docx` 파일 생성 확인 후 완료 보고
+
 ## 출력 형식
 
 기획 제안서: `output/04-proposal-{작품명}.md` (7섹션 + 부록)

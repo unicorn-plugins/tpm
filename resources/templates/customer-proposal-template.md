@@ -1,3 +1,14 @@
+<!--
+출력 형식: MS Word (.docx)
+- 마크다운으로 초안 작성 후 반드시 아래 명령으로 Word 변환:
+  python gateway/tools/generate_docx.py \
+    --input output/{작품명}/proposal-client-{작품명}.md \
+    --output output/{작품명}/proposal-client-{작품명}.docx \
+    --image-base output/{작품명}/images
+- 이미지는 docx 내부에 직접 삽입됨 (외부 링크 금지)
+- md 파일과 docx 파일 모두 저장
+-->
+
 # {작품명} 공연 안내
 
 > {장르} | {공연 기간} | {공연장}
