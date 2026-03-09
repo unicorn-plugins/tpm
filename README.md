@@ -128,7 +128,13 @@ claude plugin install tpm@tpm
 
 ## 사용법
 
-### 슬래시 명령
+TPM은 **Claude Code CLI**와 **DMAP Web** 두 가지 방식으로 사용할 수 있습니다.
+
+---
+
+### 방법 1: Claude Code CLI
+
+#### 슬래시 명령
 
 | 명령 | 설명 |
 |------|------|
@@ -138,7 +144,7 @@ claude plugin install tpm@tpm
 | `/tpm:add-ext-skill` | 외부호출 스킬 추가 |
 | `/tpm:remove-ext-skill` | 외부호출 스킬 제거 |
 
-### 기본 사용 흐름
+#### 기본 사용 흐름
 
 ```
 1. /tpm:setup       ← 최초 1회 실행
@@ -151,6 +157,61 @@ claude plugin install tpm@tpm
 
 - 중단: "취소" 또는 "중단" 입력
 - 재개: `/tpm:propose` 재실행 후 작품명 입력 → 마지막 완료된 Phase부터 자동 재개
+
+---
+
+### 방법 2: DMAP Web
+
+[DMAP Web](https://github.com/unicorn-plugins/dmap)은 브라우저에서 TPM 스킬을 실행할 수 있는 웹 인터페이스입니다. 채팅 형태로 실시간 실행 결과를 확인하고, 승인 게이트를 통해 워크플로우를 제어할 수 있습니다.
+
+#### 사전 요구사항
+
+- DMAP Web 설치 및 실행 중
+- Node.js 18 이상
+
+#### TPM 플러그인 등록
+
+DMAP Web의 `plugins.json`에 TPM 프로젝트 경로를 추가합니다:
+
+```json
+{
+  "projectDir": "/path/to/tpm",
+  "displayNames": {
+    "ko": "공연제안",
+    "en": "공연제안"
+  }
+}
+```
+
+#### DMAP Web 실행
+
+```bash
+cd dmap-web
+npm run dev
+```
+
+- 프론트엔드: http://localhost:5173
+- 백엔드 API: http://localhost:3001
+
+#### 웹 UI 사용 흐름
+
+```
+1. 브라우저에서 http://localhost:5173 접속
+2. 사이드바에서 "공연제안" 플러그인 선택
+3. Core → "공연 기획 제안서 자동 생성" 스킬 선택
+4. 채팅창에 작품명 입력 → 전 과정 자동 실행
+5. 승인 게이트 발생 시 옵션 선택 또는 직접 입력으로 진행 제어
+```
+
+#### 사용 가능한 스킬 (DMAP Web 메뉴)
+
+| 카테고리 | 스킬 | 설명 |
+|----------|------|------|
+| Core | 공연 기획 제안서 자동 생성 | `/tpm:propose` — 12단계 전체 워크플로우 |
+| Utility | 플러그인 초기설정 | `/tpm:setup` |
+| Utility | 플러그인 추가 | `/tpm:add-ext-skill` |
+| Utility | 플러그인 제거 | `/tpm:remove-ext-skill` |
+| Utility | 도움말 | `/tpm:help` |
 
 ---
 
