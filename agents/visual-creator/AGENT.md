@@ -19,28 +19,44 @@ generate_image 도구(Gemini Nano Banana 모델)로 생성함.
 
 ## 워크플로우
 
-1. `{tool:file_read}`로 `output/04-proposal-{작품명}.md` 로드
+1. `{tool:file_read}`로 `output/{작품명}/08-proposal-{작품명}.md` 및 `output/{작품명}/06-core-concept.md` 로드
 2. 기획 제안서에서 작품 컨셉, 장르, 분위기, 핵심 키워드 추출
 3. 이미지 프롬프트 작성:
-   - 포스터/무드보드: 작품 전체 컨셉을 대표하는 포스터 이미지
-   - 핵심 장면: 제안서에서 강조된 핵심 장면 또는 감성적 장면
-4. `{tool:image_generate}`(Bash)로 이미지 생성:
+   - **포스터/무드보드**: 작품 전체 컨셉을 대표하는 포스터 이미지 (1장)
+   - **주요 장면**: 극적 흐름에 따라 최소 3개 장면 선정
+     - 선정 기준: 오프닝 장면, 갈등·클라이맥스, 감동·반전 장면, 피날레 등
+     - 각 장면마다 **장면 번호·제목·설명(1~2문장)**을 함께 작성
+4. `{tool:image_generate}`(Bash)로 이미지 순차 생성:
    ```bash
-   python gateway/tools/generate_image.py --api-key {GEMINI_API_KEY} --prompt "{프롬프트}" --output-dir output/images --output-name concept-poster
+   python gateway/tools/generate_image.py --api-key {GEMINI_API_KEY} --prompt "{프롬프트}" --output-dir output/{작품명}/images --output-name concept-poster
+   python gateway/tools/generate_image.py --api-key {GEMINI_API_KEY} --prompt "{장면1 프롬프트}" --output-dir output/{작품명}/images --output-name scene-01
+   python gateway/tools/generate_image.py --api-key {GEMINI_API_KEY} --prompt "{장면2 프롬프트}" --output-dir output/{작품명}/images --output-name scene-02
+   python gateway/tools/generate_image.py --api-key {GEMINI_API_KEY} --prompt "{장면3 프롬프트}" --output-dir output/{작품명}/images --output-name scene-03
+   # ... 핵심 장면 수만큼 반복
    ```
    - API 키는 setup 시 `gateway/tools/.env`에 저장된 GEMINI_API_KEY를 읽거나,
      propose 스킬이 CONTEXT로 전달한 값을 사용
-   - 이미지 저장 경로: `output/images/concept-poster.png`, `output/images/scene-01.png`
-5. 생성된 이미지 경로 목록을 proposal-writer에 전달
+5. 생성된 이미지 경로와 장면별 설명 목록을 아래 형식으로 반환:
+
+```
+## 생성된 이미지 목록
+- concept-poster: output/{작품명}/images/concept-poster.png — {포스터 설명}
+- scene-01: output/{작품명}/images/scene-01.png — {장면 제목} | {장면 설명 1~2문장}
+- scene-02: output/{작품명}/images/scene-02.png — {장면 제목} | {장면 설명 1~2문장}
+- scene-03: output/{작품명}/images/scene-03.png — {장면 제목} | {장면 설명 1~2문장}
+...
+```
 
 ## 출력 형식
 
-- 생성된 이미지 파일: `output/images/concept-poster.png`, `output/images/scene-{n}.png`
-- 이미지 설명 텍스트: 각 이미지의 프롬프트 및 의도
+- 생성된 이미지 파일: `output/{작품명}/images/concept-poster.png`, `output/{작품명}/images/scene-{n}.png`
+- 이미지 설명 텍스트: 각 이미지의 장면 제목 및 설명 (presentation-writer가 슬라이드에 활용)
 
 ## 검증
 
+- 포스터 1장 + 주요 장면 최소 3장 이상 생성되었는가
+- 각 장면 이미지에 장면 제목과 설명이 작성되었는가
 - 기획서의 작품 컨셉과 일관된 이미지 프롬프트가 작성되었는가
-- `output/images/` 디렉토리에 이미지가 생성되었는가
-- 이미지 생성 실패 시(API 키 미설정 등): 에러 내용을 보고하고 provide 스킬에 알릴 것
+- `output/{작품명}/images/` 디렉토리에 이미지가 생성되었는가
+- 이미지 생성 실패 시(API 키 미설정 등): 에러 내용을 보고하고 propose 스킬에 알릴 것
 - 기획서 내용을 수정하지 않았는가
