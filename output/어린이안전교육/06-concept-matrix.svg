@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" width="700" height="600" font-family="sans-serif">
+
+  <!-- 배경 -->
+  <rect width="700" height="600" fill="#f9f9f9"/>
+
+  <!-- 제목 -->
+  <text x="350" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#222">우선순위 매트릭스 — 어린이 안전교육 공연 컨셉</text>
+  <text x="350" y="56" text-anchor="middle" font-size="12" fill="#666">X축: 실현 가능성(F)  |  Y축: 관객 매력도(A)  |  평균선: F=1.5, A=1.5</text>
+
+  <!-- 플롯 영역: 좌상단 (80,80) ~ (620,540) -->
+  <!-- 사분면 배경 색상 -->
+  <!-- Q2 Nice to Have: 좌상단 (x<1.5, y>1.5) → 화면상 x:80~350, y:80~310 -->
+  <rect x="80" y="80" width="270" height="230" fill="#fff9e6" stroke="none"/>
+  <!-- Q1 No Brainers: 우상단 (x>1.5, y>1.5) → x:350~620, y:80~310 -->
+  <rect x="350" y="80" width="270" height="230" fill="#e6f4ea" stroke="none"/>
+  <!-- Q3 Maybe Later: 좌하단 (x<1.5, y<1.5) → x:80~350, y:310~540 -->
+  <rect x="80" y="310" width="270" height="230" fill="#fdecea" stroke="none"/>
+  <!-- Q4 Low Hanging Fruit: 우하단 (x>1.5, y<1.5) → x:350~620, y:310~540 -->
+  <rect x="350" y="310" width="270" height="230" fill="#e8f0fe" stroke="none"/>
+
+  <!-- 격자선 -->
+  <line x1="80" y1="80" x2="80" y2="540" stroke="#ccc" stroke-width="1"/>
+  <line x1="620" y1="80" x2="620" y2="540" stroke="#ccc" stroke-width="1"/>
+  <line x1="80" y1="80" x2="620" y2="80" stroke="#ccc" stroke-width="1"/>
+  <line x1="80" y1="540" x2="620" y2="540" stroke="#ccc" stroke-width="1"/>
+
+  <!-- 평균선 (분할선) -->
+  <line x1="350" y1="80" x2="350" y2="540" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="80" y1="310" x2="620" y2="310" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- 사분면 라벨 -->
+  <!-- Q2 Nice to Have -->
+  <text x="215" y="102" text-anchor="middle" font-size="13" font-weight="bold" fill="#b8860b">Nice to Have</text>
+  <!-- Q1 No Brainers -->
+  <text x="485" y="102" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">No Brainers</text>
+  <!-- Q3 Maybe Later -->
+  <text x="215" y="530" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828">Maybe Later</text>
+  <!-- Q4 Low Hanging Fruit -->
+  <text x="485" y="530" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">Low Hanging Fruit</text>
+
+  <!--
+    좌표 매핑:
+    X축(F): 0~3 → 픽셀 80~620  → 1단위 = 180px
+    Y축(A): 0~3 → 픽셀 540~80  → 1단위 = 153.3px (위로 갈수록 높은 값)
+
+    후보1: F=2, A=2 → px_x=80+2*180=440, px_y=540-2*153.3=233
+    후보2: F=0, A=2 → px_x=80+0*180=80  → 영역 밖이므로 조정: F=0.3 → px_x=80+0.3*180=134
+                       px_y=540-2*153.3=233
+    후보3: F=3, A=1 → px_x=80+3*180=620 → 경계, F=2.7 → px_x=80+2.7*180=566
+                       px_y=540-1*153.3=387
+    후보4: F=1, A=1 → px_x=80+1*180=260, px_y=540-1*153.3=387
+
+    실제 데이터 점수로 좌표:
+    후보1: F=2, A=2 → (440, 234)
+    후보2: F=0, A=2 → F가 0이므로 축 위 표현: (80, 234) → 살짝 안쪽 (104, 234)
+    후보3: F=3, A=1 → (620, 387) → 살짝 안쪽 (596, 387)
+    후보4: F=1, A=1 → (260, 387)
+  -->
+
+  <!-- 후보1: 「위험을 막아라, 탐정단!」 F=2, A=2 → No Brainers -->
+  <circle cx="440" cy="234" r="28" fill="#2e7d32" fill-opacity="0.85" stroke="#1b5e20" stroke-width="2"/>
+  <text x="440" y="229" text-anchor="middle" font-size="11" font-weight="bold" fill="white">후보1</text>
+  <text x="440" y="244" text-anchor="middle" font-size="9" fill="white">F=2, A=2</text>
+  <text x="440" y="200" text-anchor="middle" font-size="11" fill="#1b5e20" font-weight="bold">「탐정단!」</text>
+
+  <!-- 후보2: 「빛나는 대피로」 F=0, A=2 → Nice to Have (F낮음, A높음) -->
+  <circle cx="116" cy="234" r="28" fill="#b8860b" fill-opacity="0.85" stroke="#7d5a00" stroke-width="2"/>
+  <text x="116" y="229" text-anchor="middle" font-size="11" font-weight="bold" fill="white">후보2</text>
+  <text x="116" y="244" text-anchor="middle" font-size="9" fill="white">F=0, A=2</text>
+  <text x="116" y="200" text-anchor="middle" font-size="11" fill="#7d5a00" font-weight="bold">「빛나는 대피로」</text>
+
+  <!-- 후보3: 「위험한 어른과 똑똑한 아이들」 F=3, A=1 → Low Hanging Fruit (F높음, A낮음) -->
+  <circle cx="596" cy="387" r="28" fill="#1565c0" fill-opacity="0.85" stroke="#0d3b8c" stroke-width="2"/>
+  <text x="596" y="382" text-anchor="middle" font-size="11" font-weight="bold" fill="white">후보3</text>
+  <text x="596" y="397" text-anchor="middle" font-size="9" fill="white">F=3, A=1</text>
+  <text x="545" y="430" text-anchor="middle" font-size="11" fill="#0d3b8c" font-weight="bold">「위험한 어른」</text>
+
+  <!-- 후보4: 「안전 여행자의 비밀 지도」 F=1, A=1 → Maybe Later (F낮음, A낮음) -->
+  <circle cx="260" cy="387" r="28" fill="#c62828" fill-opacity="0.85" stroke="#8b0000" stroke-width="2"/>
+  <text x="260" y="382" text-anchor="middle" font-size="11" font-weight="bold" fill="white">후보4</text>
+  <text x="260" y="397" text-anchor="middle" font-size="9" fill="white">F=1, A=1</text>
+  <text x="260" y="430" text-anchor="middle" font-size="11" fill="#8b0000" font-weight="bold">「비밀 지도」</text>
+
+  <!-- 축 레이블 -->
+  <!-- X축 눈금 -->
+  <text x="80" y="558" text-anchor="middle" font-size="11" fill="#555">0</text>
+  <text x="170" y="558" text-anchor="middle" font-size="11" fill="#555">0.5</text>
+  <text x="260" y="558" text-anchor="middle" font-size="11" fill="#555">1.0</text>
+  <text x="350" y="558" text-anchor="middle" font-size="11" fill="#999">avg</text>
+  <text x="440" y="558" text-anchor="middle" font-size="11" fill="#555">2.0</text>
+  <text x="530" y="558" text-anchor="middle" font-size="11" fill="#555">2.5</text>
+  <text x="620" y="558" text-anchor="middle" font-size="11" fill="#555">3.0</text>
+  <text x="350" y="580" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">실현 가능성 (F) →</text>
+
+  <!-- Y축 눈금 -->
+  <text x="60" y="540" text-anchor="end" font-size="11" fill="#555">0</text>
+  <text x="60" y="464" text-anchor="end" font-size="11" fill="#555">0.5</text>
+  <text x="60" y="387" text-anchor="end" font-size="11" fill="#555">1.0</text>
+  <text x="60" y="310" text-anchor="end" font-size="11" fill="#999">avg</text>
+  <text x="60" y="234" text-anchor="end" font-size="11" fill="#555">2.0</text>
+  <text x="60" y="157" text-anchor="end" font-size="11" fill="#555">2.5</text>
+  <text x="60" y="80" text-anchor="end" font-size="11" fill="#555">3.0</text>
+
+  <!-- Y축 제목 (회전) -->
+  <text transform="translate(22,310) rotate(-90)" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">관객 매력도 (A) ↑</text>
+
+  <!-- 범례 -->
+  <rect x="82" y="82" width="12" height="12" fill="#e6f4ea" stroke="#2e7d32" stroke-width="1"/>
+  <text x="98" y="93" font-size="10" fill="#2e7d32">No Brainers (고매력·고실현)</text>
+  <rect x="82" y="100" width="12" height="12" fill="#fff9e6" stroke="#b8860b" stroke-width="1"/>
+  <text x="98" y="111" font-size="10" fill="#b8860b">Nice to Have (고매력·저실현)</text>
+  <rect x="300" y="82" width="12" height="12" fill="#e8f0fe" stroke="#1565c0" stroke-width="1"/>
+  <text x="316" y="93" font-size="10" fill="#1565c0">Low Hanging Fruit (저매력·고실현)</text>
+  <rect x="300" y="100" width="12" height="12" fill="#fdecea" stroke="#c62828" stroke-width="1"/>
+  <text x="316" y="111" font-size="10" fill="#c62828">Maybe Later (저매력·저실현)</text>
+
+</svg>
