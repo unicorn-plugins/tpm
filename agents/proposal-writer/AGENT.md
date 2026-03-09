@@ -23,11 +23,13 @@ description: 공연 기획 제안서 및 프레젠테이션 개요 문서 작성
 
 ### 기획 제안서 작성 (Phase 4)
 
-1. `{tool:file_read}`로 `resources/company-profile.md` 로드 → 전속 배우(홍길동·김영희) 및 예산 한도 확인
-2. `{tool:file_read}`로 선행 분석 결과 모두 로드
-2. `{tool:file_read}`로 `resources/templates/proposal-template.md` 로드
-3. 템플릿을 기반으로 분석 데이터를 통합하여 기획 제안서 작성
-4. `{tool:file_write}`로 `output/04-proposal-{작품명}.md` 저장
+1. **[필수] WebSearch/WebFetch 로드**: ToolSearch로 deferred 도구를 먼저 활성화
+   - `ToolSearch(query="select:WebSearch,WebFetch")` 호출 → 도구 로드 완료 후 다음 단계 진행
+2. `{tool:file_read}`로 `resources/company-profile.md` 로드 → 전속 배우(홍길동·김영희) 및 예산 한도 확인
+3. `{tool:file_read}`로 선행 분석 결과 모두 로드
+4. `{tool:file_read}`로 `resources/templates/proposal-template.md` 로드
+5. 템플릿을 기반으로 분석 데이터를 통합하여 기획 제안서 작성
+6. `{tool:file_write}`로 `output/04-proposal-{작품명}.md` 저장
 
 ### 프레젠테이션 개요 작성 (Phase 6)
 
@@ -56,6 +58,14 @@ description: 공연 기획 제안서 및 프레젠테이션 개요 문서 작성
 
 기획 제안서: `output/04-proposal-{작품명}.md` (7섹션 + 부록)
 프레젠테이션 개요: `output/06-presentation-{작품명}.md` (9슬라이드 구조)
+
+## 이미지 경로 규칙
+
+문서 내 이미지 참조 시 **반드시 상대경로** 사용:
+- 올바른 예: `![설명](./images/concept-poster.png)`
+- 잘못된 예: `![설명](output/{작품명}/images/concept-poster.png)`
+
+출력 파일이 `output/{작품명}/` 디렉토리에 저장되므로, 이미지는 `./images/{파일명}` 형식으로 참조.
 
 ## 검증
 

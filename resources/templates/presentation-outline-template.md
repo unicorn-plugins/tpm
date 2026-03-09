@@ -10,7 +10,7 @@
 - **부제**: {기획 제안}
 - **발표 일자**: {날짜}
 - **발표자**: {발표자 이름/직책}
-- [이미지 삽입: `output/{작품명}/images/overview-concept.png` 배경]
+- [이미지 삽입: `./images/overview-concept.png` 배경]
 
 ---
 
@@ -19,7 +19,7 @@
 - **작품명 & 장르**: {작품명} — {장르}
 - **시놉시스** (3문장): {시놉시스}
 - **원작 정보**: {원작 또는 창작}
-- [이미지 삽입: `output/{작품명}/images/overview-concept.png`]
+- [이미지 삽입: `./images/overview-concept.png`]
 
 ---
 
@@ -76,7 +76,7 @@
 | {장면 제목 3} | [scene-03.png 삽입] | {장면 설명 1~2문장} |
 | {장면 제목 N} | [scene-0N.png 삽입] | {장면 설명 1~2문장} |
 
-> 장면 수는 핵심 컨셉에 따라 조정. 이미지 경로: `output/{작품명}/images/scene-{n}.png`
+> 장면 수는 핵심 컨셉에 따라 조정. 이미지 경로: `./images/scene-{n}.png`
 
 ---
 

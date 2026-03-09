@@ -1,0 +1,87 @@
+<svg width="600" height="500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 -->
+  <rect width="600" height="500" fill="#f8f9fa" rx="8"/>
+
+  <!-- 제목 -->
+  <text x="300" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e">공연 컨셉 우선순위 매트릭스</text>
+  <text x="300" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">해와 달이 된 오누이 — 핵심 컨셉 선정</text>
+
+  <!-- 매트릭스 영역 경계 -->
+  <!-- 전체 매트릭스 박스 -->
+  <rect x="80" y="75" width="460" height="360" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+
+  <!-- 사분면 구분선 (중앙) -->
+  <line x1="310" y1="75" x2="310" y2="435" stroke="#999999" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="80" y1="255" x2="540" y2="255" stroke="#999999" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- 사분면 배경색 -->
+  <!-- No Brainers (우상단) - 초록 계열 -->
+  <rect x="310" y="75" width="230" height="180" fill="#e8f5e9" opacity="0.7"/>
+  <!-- Big Bets (좌상단) - 노랑 계열 -->
+  <rect x="80" y="75" width="230" height="180" fill="#fff9e6" opacity="0.7"/>
+  <!-- Utilities (우하단) - 파랑 계열 -->
+  <rect x="310" y="255" width="230" height="180" fill="#e3f2fd" opacity="0.7"/>
+  <!-- Unwise (좌하단) - 빨강 계열 -->
+  <rect x="80" y="255" width="230" height="180" fill="#fce4ec" opacity="0.7"/>
+
+  <!-- 사분면 레이블 -->
+  <text x="425" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#2e7d32">No Brainers</text>
+  <text x="425" y="113" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#2e7d32">매력도 HIGH + 실현가능 HIGH</text>
+
+  <text x="195" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#e65100">Big Bets</text>
+  <text x="195" y="113" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">매력도 HIGH + 실현가능 LOW</text>
+
+  <text x="425" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1565c0">Utilities</text>
+  <text x="425" y="293" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1565c0">매력도 LOW + 실현가능 HIGH</text>
+
+  <text x="195" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#b71c1c">Unwise</text>
+  <text x="195" y="293" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#b71c1c">매력도 LOW + 실현가능 LOW</text>
+
+  <!-- 컨셉 노드 -->
+  <!-- C2: No Brainers (우상단) - 별 표시 -->
+  <circle cx="420" cy="165" r="30" fill="#43a047" opacity="0.9"/>
+  <text x="420" y="161" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">C2</text>
+  <text x="420" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">★ 최우선</text>
+  <text x="420" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1b5e20" font-weight="bold">관객 참여형</text>
+  <text x="420" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1b5e20">선택 서사극</text>
+
+  <!-- C1: Big Bets (좌상단) -->
+  <circle cx="195" cy="165" r="28" fill="#fb8c00" opacity="0.9"/>
+  <text x="195" y="161" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">C1</text>
+  <text x="195" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">A:3 / F:0</text>
+  <text x="195" y="208" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#bf360c" font-weight="bold">빛과 그림자의</text>
+  <text x="195" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#bf360c">이머시브 서사극</text>
+
+  <!-- C4: Utilities (우하단) -->
+  <circle cx="420" cy="345" r="28" fill="#1976d2" opacity="0.9"/>
+  <text x="420" y="341" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">C4</text>
+  <text x="420" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">A:0 / F:3</text>
+  <text x="420" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#0d47a1" font-weight="bold">전통 민화</text>
+  <text x="420" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#0d47a1">체험 연계 교육</text>
+
+  <!-- C3: Unwise (좌하단) -->
+  <circle cx="195" cy="345" r="26" fill="#e53935" opacity="0.8"/>
+  <text x="195" y="341" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">C3</text>
+  <text x="195" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">A:0 / F:0</text>
+  <text x="195" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#7f0000" font-weight="bold">역서사</text>
+  <text x="195" y="400" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#7f0000">이중 시점극</text>
+
+  <!-- 축 레이블 -->
+  <!-- X축: 실현 가능성 (하단) -->
+  <text x="80" y="458" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">LOW</text>
+  <text x="310" y="458" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">실현 가능성 (F)</text>
+  <text x="540" y="458" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">HIGH</text>
+  <line x1="80" y1="447" x2="540" y2="447" stroke="#aaaaaa" stroke-width="1"/>
+  <polygon points="540,443 548,447 540,451" fill="#aaaaaa"/>
+
+  <!-- Y축: 관객 매력도 (좌측) -->
+  <text x="30" y="435" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">LOW</text>
+  <text x="30" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333" transform="rotate(-90, 30, 260)">관객 매력도 (A)</text>
+  <text x="30" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#555">HIGH</text>
+  <line x1="65" y1="435" x2="65" y2="75" stroke="#aaaaaa" stroke-width="1"/>
+  <polygon points="61,75 65,67 69,75" fill="#aaaaaa"/>
+
+  <!-- 투표 점수 범례 -->
+  <rect x="80" y="470" width="460" height="22" fill="none"/>
+  <text x="300" y="484" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#777">투표 집계: C2(A:3+F:3=6점) · C1(A:3+F:0=3점) · C4(A:0+F:3=3점) · C3(A:0+F:0=0점)</text>
+</svg>
