@@ -78,7 +78,12 @@ Examples:
     # Generate image
     client = genai.Client(api_key=api_key)
 
-    system_prompt = "Always use a clean white background (#FFFFFF) for all generated images. 모든 텍스트는 한글로 작성하고, 꼭 필요한 경우에만 영문을 사용하세요 (예: SKILL.md, Haiku, Sonnet, Opus 등 고유명사)."
+    system_prompt = (
+        "Always use a clean white background (#FFFFFF) for all generated images. "
+        "Do NOT include speech bubbles, thought bubbles, captions, subtitles, narration text, or any floating text overlay in the image. "
+        "Scene-appropriate signage that naturally appears in the environment (e.g. traffic signs, store signs, stage banners) is acceptable and should be rendered in Korean if the scene is set in Korea. "
+        "All other text must be omitted entirely."
+    )
 
     response = client.models.generate_content(
         model="nano-banana-pro-preview",
