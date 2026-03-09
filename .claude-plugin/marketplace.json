@@ -1,0 +1,14 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "tpm",
+  "owner": {
+    "name": "Unicorn Inc."
+  },
+  "plugins": [
+    {
+      "name": "tpm",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

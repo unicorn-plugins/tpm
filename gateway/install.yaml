@@ -1,0 +1,8 @@
+# TPM 플러그인 설치 매니페스트
+# generate_image 커스텀 도구만 포함 (WebSearch/WebFetch는 런타임 빌트인)
+
+custom_tools:
+  - name: generate_image
+    description: "Gemini (Nano Banana) 모델 기반 이미지 생성 — 기획 컨셉 포스터 및 공연 장면 이미지 생성"
+    source: tools/generate_image.py
+    required: false

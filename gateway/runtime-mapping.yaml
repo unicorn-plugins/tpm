@@ -1,0 +1,30 @@
+# TPM 플러그인 런타임 매핑
+# tier → LLM 모델, 도구 추상 선언 → 실제 도구, 액션 카테고리 → 도구 매핑
+
+tier_mapping:
+  default:
+    HEAVY:
+      model: "claude-opus-4-6"
+    HIGH:
+      model: "claude-opus-4-6"
+    MEDIUM:
+      model: "claude-sonnet-4-6"
+    LOW:
+      model: "claude-haiku-4-5"
+
+tool_mapping:
+  # WebSearch, WebFetch는 런타임 빌트인이므로 tool_mapping에 포함하지 않음
+
+  image_generate:
+    - type: custom
+      source: "tools/generate_image.py"
+      tools: ["generate_image"]
+
+action_mapping:
+  file_read: ["Read"]
+  file_write: ["Write", "Edit"]
+  file_delete: ["Bash"]
+  code_execute: ["Bash"]
+  network_access: ["WebFetch", "WebSearch"]
+  user_interact: ["AskUserQuestion"]
+  agent_delegate: ["Task"]

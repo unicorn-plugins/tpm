@@ -1,0 +1,15 @@
+tools:
+  - name: web_search
+    description: "웹 검색 — 시장 동향, 경쟁 공연, 관객 통계 검색"
+    input: { 검색어 }
+    output: { 검색결과 목록 }
+
+  - name: web_fetch
+    description: "웹 페이지 내용 가져오기 — 공연 판매 데이터, 관객 리뷰 수집"
+    input: { URL }
+    output: { 페이지 내용 }
+
+  - name: file_read
+    description: "파일 읽기 — 리서치 결과 및 도메인 가이드 읽기"
+    input: { 파일경로 }
+    output: { 파일내용 }

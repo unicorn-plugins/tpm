@@ -1,0 +1,12 @@
+{
+  "name": "tpm",
+  "version": "1.0.0",
+  "description": "공연 기획 제안서 자동화 DMAP 플러그인 — 연극/뮤지컬 리서치부터 컨셉 이미지가 포함된 기획서/PPT까지",
+  "author": {
+    "name": "Unicorn Inc."
+  },
+  "repository": "https://github.com/unicorn-plugins/tpm",
+  "homepage": "https://github.com/unicorn-plugins/tpm",
+  "license": "MIT",
+  "keywords": ["tpm", "theater", "musical", "production", "proposal", "dmap", "plugin", "entertainment"]
+}

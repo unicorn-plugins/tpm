@@ -1,0 +1,25 @@
+tools:
+  - name: web_search
+    description: "웹 검색 — 공연 컨셉 레퍼런스 이미지, 무대 디자인 사례 검색"
+    input: { 검색어 }
+    output: { 검색결과 목록 }
+
+  - name: web_fetch
+    description: "웹 페이지 내용 가져오기 — 비주얼 컨셉 참고 자료 수집"
+    input: { URL }
+    output: { 페이지 내용 }
+
+  - name: file_read
+    description: "파일 읽기 — 기획 제안서에서 작품 컨셉 및 키워드 추출"
+    input: { 파일경로 }
+    output: { 파일내용 }
+
+  - name: image_generate
+    description: "이미지 생성 — Gemini Nano Banana 모델로 공연 컨셉 이미지 생성 (generate_image.py 실행)"
+    input: { 프롬프트, API키, 출력경로, 출력파일명 }
+    output: { 생성된이미지경로 }
+
+  - name: code_execute
+    description: "Bash 명령 실행 — generate_image.py Python 스크립트 실행"
+    input: { 명령어 }
+    output: { 실행결과 }

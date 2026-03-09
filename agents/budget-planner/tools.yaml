@@ -1,0 +1,15 @@
+tools:
+  - name: web_search
+    description: "웹 검색 — 공연 제작비 시세, 대관료, 출연료 등 예산 참고 데이터 검색"
+    input: { 검색어 }
+    output: { 검색결과 목록 }
+
+  - name: web_fetch
+    description: "웹 페이지 내용 가져오기 — 공연 제작비 사례, 손익 분석 자료 수집"
+    input: { URL }
+    output: { 페이지 내용 }
+
+  - name: file_read
+    description: "파일 읽기 — 선행 분석 결과, 도메인 가이드, 예산 참고 자료 읽기"
+    input: { 파일경로 }
+    output: { 파일내용 }

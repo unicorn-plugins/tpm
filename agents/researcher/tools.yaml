@@ -1,0 +1,15 @@
+tools:
+  - name: web_search
+    description: "웹 검색 — 공연 제목, 배우, 장르 키워드로 국내외 자료 검색"
+    input: { 검색어 }
+    output: { 검색결과 목록 }
+
+  - name: web_fetch
+    description: "웹 페이지 내용 가져오기 — 공연 상세 정보, 리뷰, 흥행 데이터 수집"
+    input: { URL }
+    output: { 페이지 내용 }
+
+  - name: file_read
+    description: "파일 읽기 — 사용자 제공 자료 또는 선행 단계 결과 파일 읽기"
+    input: { 파일경로 }
+    output: { 파일내용 }
