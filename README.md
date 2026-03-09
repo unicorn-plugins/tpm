@@ -166,12 +166,41 @@ TPM은 **Claude Code CLI**와 **DMAP Web** 두 가지 방식으로 사용할 수
 
 #### 사전 요구사항
 
-- DMAP Web 설치 및 실행 중
 - Node.js 18 이상
+- Git
 
-#### TPM 플러그인 등록
+#### 1단계: DMAP Web 클론 및 실행
 
-DMAP Web의 `plugins.json`에 TPM 프로젝트 경로를 추가합니다:
+```bash
+# DMAP Web 저장소 클론
+git clone https://github.com/unicorn-plugins/dmap.git
+cd dmap
+
+# 의존성 설치 및 실행
+npm install
+npm run dev
+```
+
+- 프론트엔드: http://localhost:5173
+- 백엔드 API: http://localhost:3001
+
+#### 2단계: 공연제안 플러그인 추가
+
+DMAP Web이 실행 중인 상태에서 브라우저 UI로 플러그인을 추가합니다.
+
+**방법 1: DMAP Web UI를 통해 추가 (권장)**
+
+1. 브라우저에서 http://localhost:5173 접속
+2. 사이드바 상단의 **"플러그인 추가"** 버튼 클릭
+3. 추가 방식 선택:
+   - **GitHub에서 가져오기** — GitHub 저장소 URL 입력 (예: `unicorn-plugins/tpm`)
+   - **로컬에서 추가** — 로컬 경로 입력 (예: `/Users/dreamondal/workspace/tpm`)
+4. 경로 입력 후 확인 → 플러그인 디렉토리 구조(agents, commands, gateway 등) 미리보기 확인
+5. **등록** 버튼 클릭 → 사이드바에 "공연제안" 플러그인 자동 추가
+
+**방법 2: `plugins.json` 직접 편집**
+
+DMAP Web의 `plugins.json`에 TPM 프로젝트 경로를 수동으로 추가합니다:
 
 ```json
 {
@@ -183,17 +212,7 @@ DMAP Web의 `plugins.json`에 TPM 프로젝트 경로를 추가합니다:
 }
 ```
 
-#### DMAP Web 실행
-
-```bash
-cd dmap-web
-npm run dev
-```
-
-- 프론트엔드: http://localhost:5173
-- 백엔드 API: http://localhost:3001
-
-#### 웹 UI 사용 흐름
+#### 3단계: 웹 UI 사용
 
 ```
 1. 브라우저에서 http://localhost:5173 접속
