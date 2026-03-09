@@ -192,7 +192,7 @@ user-invocable: true
 
 - **TASK**: 내부 기획 제안서를 바탕으로 고객(공연 관람객·구매자)을 설득하는 외부용 제안서 작성. **최종 산출물은 MS Word(.docx) 파일로 이미지 포함 출력**
 - **EXPECTED OUTCOME**:
-  - `output/{작품명}/proposal-client-{작품명}.md` — 마크다운 초안 (이미지 경로 참조 포함)
+  - `output/{작품명}/11-customer-proposal-{작품명}.md` — 마크다운 초안 (이미지 경로 참조 포함)
   - `output/{작품명}/proposal-client-{작품명}.docx` — **이미지가 삽입된 MS Word 파일** (최종 납품물)
 - **MUST DO**:
   - `resources/templates/customer-proposal-template.md` 템플릿 준수
@@ -201,7 +201,7 @@ user-invocable: true
   - **마크다운 저장 후 반드시 아래 명령으로 Word 변환 실행**:
     ```bash
     python gateway/tools/generate_docx.py \
-      --input output/{작품명}/proposal-client-{작품명}.md \
+      --input output/{작품명}/11-customer-proposal-{작품명}.md \
       --output output/{작품명}/proposal-client-{작품명}.docx \
       --image-base output/{작품명}/images
     ```
@@ -242,7 +242,7 @@ user-invocable: true
 - 내부 프레젠테이션:       output/{작품명}/10-presentation-{작품명}.md
 
 ### 고객용 (외부)
-- 고객용 제안서 (마크다운): output/{작품명}/proposal-client-{작품명}.md
+- 고객용 제안서 (마크다운): output/{작품명}/11-customer-proposal-{작품명}.md
 - 고객용 제안서 (Word):    output/{작품명}/proposal-client-{작품명}.docx  ← 이미지 삽입 최종본
 - 고객용 프레젠테이션:     output/{작품명}/12-customer-presentation-{작품명}.md
 
