@@ -129,12 +129,14 @@ user-invocable: true
 
 ### Phase 9: 컨셉 이미지 생성 → Agent: visual-creator (`ulw` 활용)
 
-- **TASK**: 핵심 공연 컨셉을 반영한 포스터/무드보드 이미지 및 실연 주요 장면 이미지 생성
-- **EXPECTED OUTCOME**: `output/{작품명}/images/concept-poster.png` (1장) + `output/{작품명}/images/scene-{n}.png` (최소 3장) + 각 장면별 제목·설명 목록
+- **TASK**: 핵심 공연 컨셉을 반영한 포스터/무드보드, 작품개요·기획의도 통합 이미지, 실연 주요 장면 이미지 생성
+- **EXPECTED OUTCOME**: `output/{작품명}/images/concept-poster.png` (1장) + `output/{작품명}/images/overview-concept.png` (1장) + `output/{작품명}/images/scene-{n}.png` (최소 3장) + 각 이미지별 제목·설명 목록
 - **MUST DO**:
   - `--api-key` 파라미터로 GEMINI_API_KEY 전달하여 generate_image.py 실행
+  - `overview-concept.png`: 제안서 1.작품개요 + 2.기획의도를 한 장의 타이틀 카드 비주얼로 생성 (고객용 제안서·프레젠테이션 표지에 활용)
   - 장면 이미지는 극적 흐름(오프닝→갈등→클라이맥스→피날레) 기준으로 최소 3개 선정하여 각각 생성
-  - 각 장면 이미지 생성 후 장면 번호·제목·설명(1~2문장)을 목록으로 정리하여 반환
+  - 각 이미지 생성 후 번호·제목·설명(1~2문장)을 목록으로 정리하여 반환
+  - **모든 이미지 프롬프트는 영어로 작성, 이미지 내 텍스트/한글 삽입 금지**
 - **MUST NOT DO**: 기획서 내용 수정 금지, 네트워크 접근 금지
 - **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/06-core-concept.md`, GEMINI_API_KEY 값
 - **이미지 생성 실패 시**: "GEMINI_API_KEY 미설정으로 이미지 생성을 건너뜁니다. `/tpm:setup`을 실행하여 API 키를 설정하세요." 안내 후 Phase 10으로 진행 (장면 설명 텍스트만 전달)
@@ -151,32 +153,69 @@ user-invocable: true
 - **MUST NOT DO**: 기획서 원본 수정 금지
 - **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/04-direction.md`, Phase 9 이미지 경로 및 장면별 설명 목록, `resources/templates/presentation-outline-template.md`
 
-### Phase 11: 완료 보고
+### Phase 11: 고객용 제안서 작성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
+
+- **TASK**: 내부 기획 제안서를 바탕으로 고객(공연 관람객·구매자)을 설득하는 외부용 제안서 작성
+- **EXPECTED OUTCOME**: `output/{작품명}/11-customer-proposal-{작품명}.md` — 작품 매력·관람 가치·감동 포인트 중심의 고객용 제안서
+- **MUST DO**:
+  - `resources/templates/customer-proposal-template.md` 템플릿 준수
+  - `overview-concept.png`를 표지/작품소개 섹션에 삽입
+  - 주요 장면 이미지(scene-{n}.png)와 장면 설명을 활용하여 관람 포인트 강조
+  - 언어 톤: 감성적·설득적 (경영 수치, BEP, 내부 예산 상세 제외)
+- **MUST NOT DO**: 내부 예산 상세·BEP·내부 마케팅 전략 노출 금지 / 기획서 원본 수정 금지
+- **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/06-core-concept.md`, Phase 9 이미지 경로 및 설명 목록, `resources/templates/customer-proposal-template.md`
+
+### Phase 12: 고객용 프레젠테이션 구성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
+
+- **TASK**: 고객용 제안서를 관람객·구매자 대상 7슬라이드 PPT 개요로 변환
+- **EXPECTED OUTCOME**: `output/{작품명}/12-customer-presentation-{작품명}.md` — 7슬라이드 고객용 PPT 개요
+- **MUST DO**:
+  - `resources/templates/customer-presentation-template.md` 템플릿 준수
+  - 슬라이드 1 표지에 `overview-concept.png` 활용
+  - 슬라이드 2 작품소개에 `overview-concept.png` 활용
+  - 주요 장면 슬라이드에 scene 이미지 + 장면 설명 포함
+  - 언어 톤: 감성적·초대하는 느낌
+- **MUST NOT DO**: 내부 경영 수치·예산 노출 금지 / 기획서·내부 PPT 원본 수정 금지
+- **CONTEXT**: `output/{작품명}/11-customer-proposal-{작품명}.md`, Phase 9 이미지 경로 및 설명 목록, `resources/templates/customer-presentation-template.md`
+
+### Phase 13: 완료 보고
 
 모든 산출물 파일 존재 확인 후 사용자에게 최종 보고:
 ```
 ✅ 공연 기획 제안서 자동 생성 완료
 
 ## 산출물 목록
-- 리서치 보고서:       output/{작품명}/01-research.md
-- 시장 분석 보고서:    output/{작품명}/02-market-analysis.md
-- 문제 가설:          output/{작품명}/03-problem-hypothesis.md
-- 킹핀 & 방향성:      output/{작품명}/04-direction.md
-- 컨셉 후보:          output/{작품명}/05-concept-candidates.md
-- 핵심 공연 컨셉:      output/{작품명}/06-core-concept.md
-- 예산 계획서:         output/{작품명}/07-budget-plan.md
-- 기획 제안서:         output/{작품명}/08-proposal-{작품명}.md
-- 컨셉 이미지:         output/{작품명}/images/concept-poster.png
-- 프레젠테이션 개요:   output/{작품명}/10-presentation-{작품명}.md
+
+### 내부용 (경영진)
+- 리서치 보고서:          output/{작품명}/01-research.md
+- 시장 분석 보고서:        output/{작품명}/02-market-analysis.md
+- 문제 가설:              output/{작품명}/03-problem-hypothesis.md
+- 킹핀 & 방향성:          output/{작품명}/04-direction.md
+- 컨셉 후보:              output/{작품명}/05-concept-candidates.md
+- 핵심 공연 컨셉:          output/{작품명}/06-core-concept.md
+- 예산 계획서:             output/{작품명}/07-budget-plan.md
+- 내부 기획 제안서:        output/{작품명}/08-proposal-{작품명}.md
+- 내부 프레젠테이션:       output/{작품명}/10-presentation-{작품명}.md
+
+### 고객용 (외부)
+- 고객용 제안서:           output/{작품명}/11-customer-proposal-{작품명}.md
+- 고객용 프레젠테이션:     output/{작품명}/12-customer-presentation-{작품명}.md
+
+### 이미지
+- 컨셉 포스터:             output/{작품명}/images/concept-poster.png
+- 작품개요·기획의도 이미지: output/{작품명}/images/overview-concept.png
+- 주요 장면 이미지:        output/{작품명}/images/scene-01.png ~ scene-{n}.png
 ```
 
 ## 완료 조건
 
-- [ ] Phase 1~10 모두 완료
+- [ ] Phase 1~12 모두 완료
 - [ ] `output/{작품명}/` 디렉토리에 산출물 파일 존재
 - [ ] 핵심 공연 컨셉(06-core-concept.md) 생성 확인
-- [ ] 기획 제안서(08-proposal-*.md) 생성 확인
-- [ ] 프레젠테이션 개요(10-presentation-*.md) 생성 확인
+- [ ] 내부 기획 제안서(08-proposal-*.md) 생성 확인
+- [ ] 내부 프레젠테이션(10-presentation-*.md) 생성 확인
+- [ ] 고객용 제안서(11-customer-proposal-*.md) 생성 확인
+- [ ] 고객용 프레젠테이션(12-customer-presentation-*.md) 생성 확인
 
 ## 검증 프로토콜
 
@@ -192,7 +231,7 @@ Phase 8 완료 후 proposal-writer의 결과를 확인:
 - 7개 섹션이 모두 채워졌는가
 - 선행 분석 데이터가 통합되었는가
 
-Phase 11에서 모든 산출물 파일 존재 확인.
+Phase 13에서 모든 산출물 파일 존재 확인.
 
 ## 상태 정리
 
@@ -219,12 +258,14 @@ Phase 11에서 모든 산출물 파일 존재 확인.
 | 08-proposal-*.md 없음 | Phase 8 |
 | images/ 없음 | Phase 9 |
 | 10-presentation-*.md 없음 | Phase 10 |
+| 11-customer-proposal-*.md 없음 | Phase 11 |
+| 12-customer-presentation-*.md 없음 | Phase 12 |
 
 ## MUST 규칙
 
 | # | 규칙 |
 |---|------|
-| 1 | 11개 Phase를 순서대로 실행 (선행 결과가 다음 Phase의 CONTEXT로 전달됨) |
+| 1 | 13개 Phase를 순서대로 실행 (선행 결과가 다음 Phase의 CONTEXT로 전달됨) |
 | 2 | 에이전트 호출 시 3파일 로드 → runtime-mapping.yaml 구체화 → Task 호출 절차 준수 |
 | 3 | Phase 3~6 가이드 파일(`resources/guides/03~06-*.md`)을 에이전트에 CONTEXT로 전달 |
 | 4 | Phase 5·6의 병렬 태스크는 `Task(run_in_background=true)`로 동시 실행 |
