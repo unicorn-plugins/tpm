@@ -220,4 +220,5 @@ cy
 
 ## Python 설치
 최신 버전을 설치하세요.  
-https://www.python.org/downloads/
+https://www.python.org/ftp/python/3.14.3/python-3.14.3-amd64.exe
+
