@@ -28,7 +28,7 @@ TPM은 공연 기획사 내부 팀이 연극·뮤지컬 기획 제안서를 작�
 
 ### 사전 요구사항
 
-- [Claude Code](https://claude.com/claude-code) CLI 설치
+- [설치하기](./install.md) 참고하여 설치
 - Python 3.8+ (이미지 생성·Word 변환 기능 사용 시)
 - Google Gemini API Key (이미지 생성 기능 사용 시)
 
