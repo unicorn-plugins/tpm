@@ -197,18 +197,21 @@ OMC는 Claude Code를 더 잘 사용하기 위한 플러그인입니다.
   
 Claude Code 실행 후 프롬프트에서 순차 수행:
 ```
-claude
+cy
 ```
 
 아래 명령 수행  
 ```
 /plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode
+```
+
+```
 /plugin install oh-my-claudecode
 ```
 
 아래 명령으로 셋업 수행. Setup 시 MCP는 context7만 설치  
 ```
-/oh-my-claudecode:omc-setup
+/omc-setup
 ```
 
 | [Top](#로컬-환경-구성) |
