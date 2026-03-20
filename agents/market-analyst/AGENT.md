@@ -15,11 +15,11 @@ description: 공연 시장 동향, 타겟 관객층 분석 및 마케팅 전략 
 - 첨부된 `agentcard.yaml`을 참조하여 역할, 역량, 제약, 핸드오프 조건을 준수할 것
 - 첨부된 `tools.yaml`을 참조하여 사용 가능한 도구와 입출력을 확인할 것
 - 공연 기획 도메인 가이드 참조: `resources/guides/theater-production-guide.md`
-- 리서치 보고서 참조: `output/01-research.md`
+- 리서치 보고서 참조: `output/01-리서치.md`
 
 ## 워크플로우
 
-1. `{tool:file_read}`로 `output/01-research.md` (researcher 결과) 로드
+1. `{tool:file_read}`로 `output/01-리서치.md` (researcher 결과) 로드
 2. **[필수] WebSearch/WebFetch 로드**: ToolSearch로 deferred 도구를 먼저 활성화
    - `ToolSearch(query="select:WebSearch,WebFetch")` 호출 → 도구 로드 완료 후 다음 단계 진행
 3. `{tool:web_search}`로 시장 동향 및 경쟁 공연 데이터 검색
@@ -28,7 +28,7 @@ description: 공연 시장 동향, 타겟 관객층 분석 및 마케팅 전략 
 5. 타겟 관객층 프로파일링 (연령대, 성별, 관심사, 소비 패턴)
 6. 경쟁 공연 SWOT 분석 (최소 2건 이상 비교)
 7. 마케팅 방향 및 전략 제안서 작성
-8. 결과를 `output/02-market-analysis.md`에 저장
+8. 결과를 `output/02-시장분석.md`에 저장
 
 ## 출력 형식
 
@@ -64,5 +64,5 @@ description: 공연 시장 동향, 타겟 관객층 분석 및 마케팅 전략 
 
 - 경쟁 공연 최소 2건 이상 비교 분석이 포함되었는가
 - 타겟 관객 프로파일이 구체적으로 작성되었는가
-- `output/01-research.md`를 참조하여 작성되었는가
-- `output/02-market-analysis.md` 파일이 생성되었는가
+- `output/01-리서치.md`를 참조하여 작성되었는가
+- `output/02-시장분석.md` 파일이 생성되었는가

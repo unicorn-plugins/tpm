@@ -21,7 +21,7 @@ generate_image 도구(Gemini Nano Banana 모델)로 생성함.
 
 1. **[필수] WebSearch/WebFetch 로드**: ToolSearch로 deferred 도구를 먼저 활성화
    - `ToolSearch(query="select:WebSearch,WebFetch")` 호출 → 도구 로드 완료 후 다음 단계 진행
-2. `{tool:file_read}`로 `output/{작품명}/08-proposal-{작품명}.md` 및 `output/{작품명}/06-core-concept.md` 로드
+2. `{tool:file_read}`로 `output/{작품명}/08-기획제안서-{작품명}.md` 및 `output/{작품명}/06-핵심컨셉.md` 로드
 3. 기획 제안서에서 작품 컨셉, 장르, 분위기, 핵심 키워드 추출
 4. (선택) `{tool:web_search}`로 유사 공연 포스터·비주얼 레퍼런스 검색하여 이미지 스타일 참고
 5. 이미지 프롬프트 작성:

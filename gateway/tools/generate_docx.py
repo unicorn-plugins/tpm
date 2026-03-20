@@ -4,8 +4,8 @@ generate_docx.py — 마크다운 파일을 MS Word(.docx)로 변환하며 이�
 
 사용법:
   python gateway/tools/generate_docx.py \
-    --input output/{작품명}/proposal-client-{작품명}.md \
-    --output output/{작품명}/proposal-client-{작품명}.docx \
+    --input output/{작품명}/11-고객제안서-{작품명}.md \
+    --output output/{작품명}/고객제안서-{작품명}.docx \
     --image-base output/{작품명}/images
 """
 

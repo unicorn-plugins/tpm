@@ -95,7 +95,7 @@ user-invocable: true
 ### Phase 1: 작품 리서치 → Agent: researcher (`/oh-my-claudecode:research` 활용)
 
 - **TASK**: 사용자가 제시한 주제/작품에 대한 국내외 자료 수집 및 유사 공연 레퍼런스 리서치
-- **EXPECTED OUTCOME**: `output/{작품명}/01-research.md` — 후보 작품 리스트, 유사 공연 3건 이상, 레퍼런스 자료
+- **EXPECTED OUTCOME**: `output/{작품명}/01-리서치.md` — 후보 작품 리스트, 유사 공연 3건 이상, 레퍼런스 자료
 - **MUST DO**: 최소 3개 이상 유사 공연 레퍼런스 포함, 국내외 자료 교차 수집
 - **MUST NOT DO**: 시장 분석, 예산 산정, 기획서 작성 금지
 - **CONTEXT**: 사용자가 입력한 주제/작품명
@@ -103,64 +103,64 @@ user-invocable: true
 ### Phase 2: 시장·관객 분석 → Agent: market-analyst (`/oh-my-claudecode:analyze` 활용)
 
 - **TASK**: Phase 1 리서치 결과를 기반으로 시장 동향, 타겟 관객층, 경쟁 공연 분석 및 마케팅 전략 수립
-- **EXPECTED OUTCOME**: `output/{작품명}/02-market-analysis.md` — 시장 분석, 타겟 관객 프로파일, 마케팅 전략안
+- **EXPECTED OUTCOME**: `output/{작품명}/02-시장분석.md` — 시장 분석, 타겟 관객 프로파일, 마케팅 전략안
 - **MUST DO**: 경쟁 공연 최소 2건 비교 분석 포함
 - **MUST NOT DO**: 예산 산정, 기획서 작성 금지
-- **CONTEXT**: `output/{작품명}/01-research.md` 파일 경로 전달
+- **CONTEXT**: `output/{작품명}/01-리서치.md` 파일 경로 전달
 
 ### Phase 3: 문제 가설 설정 → Agent: market-analyst (`/oh-my-claudecode:analyze` 활용)
 
 - **GUIDE**: `resources/guides/03-problem-hypothesis-guide.md`
 - **TASK**: 리서치 및 시장·관객 분석 데이터를 기반으로 관객·시장이 겪는 핵심 문제 3개를 도출하고, 각각 5WHY 분석으로 근본원인을 도출. 근본원인 해소 시 관객·제작사가 얻는 비즈니스 가치를 각각 3개 이하로 정의
-- **EXPECTED OUTCOME**: `output/{작품명}/03-problem-hypothesis.md` — 문제 3개, 5WHY 분석, 다층적 근본원인 검토, 비즈니스 가치(관객/제작사)
-- **MUST DO**: 가이드(`resources/guides/03-problem-hypothesis-guide.md`) 준수 / 문제는 관객·시장 관점으로 작성 / 01-research.md 및 02-market-analysis.md 데이터를 근거로 활용
+- **EXPECTED OUTCOME**: `output/{작품명}/03-문제가설.md` — 문제 3개, 5WHY 분석, 다층적 근본원인 검토, 비즈니스 가치(관객/제작사)
+- **MUST DO**: 가이드(`resources/guides/03-problem-hypothesis-guide.md`) 준수 / 문제는 관객·시장 관점으로 작성 / 01-리서치.md 및 02-시장분석.md 데이터를 근거로 활용
 - **MUST NOT DO**: 솔루션(공연 컨셉) 포함 금지 / 제작자 관점의 문제 작성 금지
-- **CONTEXT**: `output/{작품명}/01-research.md`, `output/{작품명}/02-market-analysis.md`
+- **CONTEXT**: `output/{작품명}/01-리서치.md`, `output/{작품명}/02-시장분석.md`
 
 ### Phase 4: 킹핀 문제 + 방향성 정의 → Agent: market-analyst (`/oh-my-claudecode:analyze` 활용)
 
 - **GUIDE**: `resources/guides/04-direction-guide.md`
 - **TASK**: 문제 가설의 3개 문제를 영향력·빈도·심각도·근본성·해결가능성 5가지 기준으로 평가하여 킹핀 문제를 선정하고, `'{타겟 관객유형}는 {목적}을 위하여 {원하는 공연 경험}이 필요하다.'` 형식의 Needs Statement로 공연 방향성을 정의
-- **EXPECTED OUTCOME**: `output/{작품명}/04-direction.md` — 문제 인과관계 분석, 5가지 기준 평가표, 킹핀 문제 선정, Needs Statement
+- **EXPECTED OUTCOME**: `output/{작품명}/04-방향성.md` — 문제 인과관계 분석, 5가지 기준 평가표, 킹핀 문제 선정, Needs Statement
 - **MUST DO**: 가이드(`resources/guides/04-direction-guide.md`) 준수 / 5가지 기준 평가표 포함 / Needs Statement는 특정 작품/형식이 아닌 경험으로 표현
 - **MUST NOT DO**: 킹핀 문제를 데이터 없이 직감으로 선정 금지 / Needs Statement에 구체적 솔루션 포함 금지
-- **CONTEXT**: `output/{작품명}/03-problem-hypothesis.md`, `output/{작품명}/02-market-analysis.md`
+- **CONTEXT**: `output/{작품명}/03-문제가설.md`, `output/{작품명}/02-시장분석.md`
 
 ### Phase 5: 공연 컨셉 후보 도출 → Agent: market-analyst(병렬), proposal-writer(리드·수렴) (`/oh-my-claudecode:ralph` 활용)
 
 - **GUIDE**: `resources/guides/05-ideation-guide.md`
 - **TASK**: market-analyst와 proposal-writer가 각자 SCAMPER·Steal & Synthesize 기법으로 Big Idea 3개, Little Win Idea 2개, Crazy Idea 1개를 도출(병렬)한 후, proposal-writer가 유사도 평가표(컨셉 70%/형식 30%)를 작성하여 유사도 0.7 이상 아이디어를 합쳐 공연 컨셉 후보를 수렴
-- **EXPECTED OUTCOME**: `output/{작품명}/05-concept-candidates.md` — 에이전트별 아이디어 표, 유사도 평가, 수렴된 컨셉 후보 3~5개(각 핵심 경험 가치·공연 형태·차별화·Needs Statement 연결 포함)
+- **EXPECTED OUTCOME**: `output/{작품명}/05-컨셉후보.md` — 에이전트별 아이디어 표, 유사도 평가, 수렴된 컨셉 후보 3~5개(각 핵심 경험 가치·공연 형태·차별화·Needs Statement 연결 포함)
 - **실행**: market-analyst 아이디어 발상은 `Task(run_in_background=true)`로 동시 실행, 수렴은 proposal-writer가 순차 수행
 - **MUST DO**: 가이드(`resources/guides/05-ideation-guide.md`) 준수 / 각 후보의 Needs Statement 연결 명시 / 타 분야 벤치마킹 사례 최소 3개 포함
-- **MUST NOT DO**: 유사도 0.7 미만 아이디어 강제 합치기 금지 / 01-research.md 레퍼런스와 동일한 공연 복사 금지
-- **CONTEXT**: `output/{작품명}/01-research.md`, `output/{작품명}/02-market-analysis.md`, `output/{작품명}/03-problem-hypothesis.md`, `output/{작품명}/04-direction.md`
+- **MUST NOT DO**: 유사도 0.7 미만 아이디어 강제 합치기 금지 / 01-리서치.md 레퍼런스와 동일한 공연 복사 금지
+- **CONTEXT**: `output/{작품명}/01-리서치.md`, `output/{작품명}/02-시장분석.md`, `output/{작품명}/03-문제가설.md`, `output/{작품명}/04-방향성.md`
 
 ### Phase 6: 평가 + 핵심 컨셉 선정 → Agent: market-analyst, proposal-writer(리드) (`/oh-my-claudecode:ralph` 활용)
 
 - **GUIDE**: `resources/guides/06-solution-selection-guide.md`
 - **TASK**: market-analyst와 proposal-writer가 관객 매력도(A) 3표·실현 가능성(F) 3표를 투표(병렬)한 후, proposal-writer가 결과를 집계하고 X축=실현가능성/Y축=관객매력도의 2×2 매트릭스를 SVG로 시각화하여 핵심 공연 컨셉 3개 이하를 선정
-- **EXPECTED OUTCOME**: `output/{작품명}/06-core-concept.md` — 투표 결과 집계표, 우선순위 매트릭스 SVG(`output/{작품명}/06-concept-matrix.svg`), 핵심 공연 컨셉(3개 이하, 선정 근거·Needs Statement 연결 포함)
+- **EXPECTED OUTCOME**: `output/{작품명}/06-핵심컨셉.md` — 투표 결과 집계표, 우선순위 매트릭스 SVG(`output/{작품명}/06-컨셉매트릭스.svg`), 핵심 공연 컨셉(3개 이하, 선정 근거·Needs Statement 연결 포함)
 - **실행**: 투표는 2개 에이전트를 `Task(run_in_background=true)`로 동시 실행, 집계 및 선정은 proposal-writer가 순차 수행
 - **MUST DO**: 가이드(`resources/guides/06-solution-selection-guide.md`) 준수 / No Brainers 영역 컨셉 우선 선정 / 최소 1개 컨셉의 Needs Statement 연결 검증
 - **MUST NOT DO**: 투표 없이 직감으로 선정 금지 / 핵심 컨셉 3개 초과 선정 금지
-- **CONTEXT**: `output/{작품명}/05-concept-candidates.md`, `output/{작품명}/04-direction.md`
+- **CONTEXT**: `output/{작품명}/05-컨셉후보.md`, `output/{작품명}/04-방향성.md`
 
 ### Phase 7: 예산 계획 → Agent: budget-planner (`ulw` 활용)
 
 - **TASK**: 선정된 핵심 공연 컨셉과 공연 규모에 맞는 항목별 예산 계획서 및 손익분기점 분석
-- **EXPECTED OUTCOME**: `output/{작품명}/07-budget-plan.md` — 항목별 예산 상세표, BEP 분석, 시나리오별 수익
+- **EXPECTED OUTCOME**: `output/{작품명}/07-예산계획.md` — 항목별 예산 상세표, BEP 분석, 시나리오별 수익
 - **MUST DO**: 도메인 가이드(`resources/guides/theater-production-guide.md`)의 표준 예산 항목 참조 / 핵심 컨셉 기반 예산 산정
 - **MUST NOT DO**: 마케팅 전략 판단, 기획서 작성, 외부 검색 금지
-- **CONTEXT**: `output/{작품명}/01-research.md`, `output/{작품명}/02-market-analysis.md`, `output/{작품명}/06-core-concept.md`
+- **CONTEXT**: `output/{작품명}/01-리서치.md`, `output/{작품명}/02-시장분석.md`, `output/{작품명}/06-핵심컨셉.md`
 
 ### Phase 8: 기획 제안서 작성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
 
 - **TASK**: 선행 분석 및 핵심 컨셉 데이터를 통합하여 기획 제안서 작성
-- **EXPECTED OUTCOME**: `output/{작품명}/08-proposal-{작품명}.md` — 7섹션 + 부록 구조의 기획 제안서
-- **MUST DO**: `resources/templates/proposal-template.md` 템플릿 준수 / 01~06 분석 결과 모두 반영 / 핵심 공연 컨셉(06-core-concept.md) 중심으로 구성
+- **EXPECTED OUTCOME**: `output/{작품명}/08-기획제안서-{작품명}.md` — 7섹션 + 부록 구조의 기획 제안서
+- **MUST DO**: `resources/templates/proposal-template.md` 템플릿 준수 / 01~06 분석 결과 모두 반영 / 핵심 공연 컨셉(06-핵심컨셉.md) 중심으로 구성
 - **MUST NOT DO**: 선행 분석 결과를 임의로 변경하거나 생략 금지
-- **CONTEXT**: `output/{작품명}/01-research.md`, `output/{작품명}/02-market-analysis.md`, `output/{작품명}/04-direction.md`, `output/{작품명}/06-core-concept.md`, `output/{작품명}/07-budget-plan.md`, `resources/templates/proposal-template.md`
+- **CONTEXT**: `output/{작품명}/01-리서치.md`, `output/{작품명}/02-시장분석.md`, `output/{작품명}/04-방향성.md`, `output/{작품명}/06-핵심컨셉.md`, `output/{작품명}/07-예산계획.md`, `resources/templates/proposal-template.md`
 
 ### Phase 9: 컨셉 이미지 생성 → Agent: visual-creator (`ulw` 활용)
 
@@ -173,27 +173,27 @@ user-invocable: true
   - 각 이미지 생성 후 번호·제목·설명(1~2문장)을 목록으로 정리하여 반환
   - **이미지 프롬프트는 영어로 작성. overview-concept는 한글 텍스트 레이블 포함. scene-* 이미지는 텍스트 삽입 금지.**
 - **MUST NOT DO**: 기획서 내용 수정 금지, 네트워크 접근 금지
-- **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/06-core-concept.md`, GEMINI_API_KEY 값
+- **CONTEXT**: `output/{작품명}/08-기획제안서-{작품명}.md`, `output/{작품명}/06-핵심컨셉.md`, GEMINI_API_KEY 값
 - **이미지 생성 실패 시**: "GEMINI_API_KEY 미설정으로 이미지 생성을 건너뜁니다. `/tpm:setup`을 실행하여 API 키를 설정하세요." 안내 후 Phase 10으로 진행 (장면 설명 텍스트만 전달)
 
 ### Phase 10: 프레젠테이션 구성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
 
 - **TASK**: 기획 제안서를 경영진 발표용 10슬라이드 개요로 변환
-- **EXPECTED OUTCOME**: `output/{작품명}/10-presentation-{작품명}.md` — 10슬라이드 구조 PPT 개요 (주요 장면 슬라이드 포함)
+- **EXPECTED OUTCOME**: `output/{작품명}/10-프레젠테이션-{작품명}.md` — 10슬라이드 구조 PPT 개요 (주요 장면 슬라이드 포함)
 - **MUST DO**:
   - `resources/templates/presentation-outline-template.md` 템플릿 준수
   - 이미지 삽입 위치 표시
   - 핵심 컨셉 및 방향성 강조
   - **주요 장면 슬라이드**: Phase 9에서 전달받은 장면 이미지 경로와 설명을 활용하여, 각 장면 이미지 + 장면 제목 + 설명(1~2문장)을 슬라이드에 포함
 - **MUST NOT DO**: 기획서 원본 수정 금지
-- **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/04-direction.md`, Phase 9 이미지 경로 및 장면별 설명 목록, `resources/templates/presentation-outline-template.md`
+- **CONTEXT**: `output/{작품명}/08-기획제안서-{작품명}.md`, `output/{작품명}/04-방향성.md`, Phase 9 이미지 경로 및 장면별 설명 목록, `resources/templates/presentation-outline-template.md`
 
 ### Phase 11: 고객용 제안서 작성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
 
 - **TASK**: 내부 기획 제안서를 바탕으로 고객(공연 관람객·구매자)을 설득하는 외부용 제안서 작성. **최종 산출물은 MS Word(.docx) 파일로 이미지 포함 출력**
 - **EXPECTED OUTCOME**:
-  - `output/{작품명}/11-customer-proposal-{작품명}.md` — 마크다운 초안 (이미지 경로 참조 포함)
-  - `output/{작품명}/proposal-client-{작품명}.docx` — **이미지가 삽입된 MS Word 파일** (최종 납품물)
+  - `output/{작품명}/11-고객제안서-{작품명}.md` — 마크다운 초안 (이미지 경로 참조 포함)
+  - `output/{작품명}/고객제안서-{작품명}.docx` — **이미지가 삽입된 MS Word 파일** (최종 납품물)
 - **MUST DO**:
   - `resources/templates/customer-proposal-template.md` 템플릿 준수
   - 주요 장면 이미지(scene-{n}.png)와 장면 설명을 활용하여 관람 포인트 강조
@@ -201,18 +201,18 @@ user-invocable: true
   - **마크다운 저장 후 반드시 아래 명령으로 Word 변환 실행**:
     ```bash
     python gateway/tools/generate_docx.py \
-      --input output/{작품명}/11-customer-proposal-{작품명}.md \
-      --output output/{작품명}/proposal-client-{작품명}.docx \
+      --input output/{작품명}/11-고객제안서-{작품명}.md \
+      --output output/{작품명}/고객제안서-{작품명}.docx \
       --image-base output/{작품명}/images
     ```
   - `.docx` 파일 생성 확인 (파일 크기 10KB 이상) 후 완료 보고
 - **MUST NOT DO**: 내부 예산 상세·BEP·내부 마케팅 전략 노출 금지 / 기획서 원본 수정 금지 / Word 변환 생략 금지
-- **CONTEXT**: `output/{작품명}/08-proposal-{작품명}.md`, `output/{작품명}/06-core-concept.md`, Phase 9 이미지 경로 및 설명 목록, `resources/templates/customer-proposal-template.md`
+- **CONTEXT**: `output/{작품명}/08-기획제안서-{작품명}.md`, `output/{작품명}/06-핵심컨셉.md`, Phase 9 이미지 경로 및 설명 목록, `resources/templates/customer-proposal-template.md`
 
 ### Phase 12: 고객용 프레젠테이션 구성 → Agent: proposal-writer (`/oh-my-claudecode:ralph` 활용)
 
 - **TASK**: 고객용 제안서를 관람객·구매자 대상 7슬라이드 PPT 개요로 변환
-- **EXPECTED OUTCOME**: `output/{작품명}/12-customer-presentation-{작품명}.md` — 7슬라이드 고객용 PPT 개요
+- **EXPECTED OUTCOME**: `output/{작품명}/12-고객프레젠테이션-{작품명}.md` — 7슬라이드 고객용 PPT 개요
 - **MUST DO**:
   - `resources/templates/customer-presentation-template.md` 템플릿 준수
   - 슬라이드 1 표지에 `overview-concept.png` 활용
@@ -220,7 +220,7 @@ user-invocable: true
   - 주요 장면 슬라이드에 scene 이미지 + 장면 설명 포함
   - 언어 톤: 감성적·초대하는 느낌
 - **MUST NOT DO**: 내부 경영 수치·예산 노출 금지 / 기획서·내부 PPT 원본 수정 금지
-- **CONTEXT**: `output/{작품명}/11-customer-proposal-{작품명}.md`, Phase 9 이미지 경로 및 설명 목록, `resources/templates/customer-presentation-template.md`
+- **CONTEXT**: `output/{작품명}/11-고객제안서-{작품명}.md`, Phase 9 이미지 경로 및 설명 목록, `resources/templates/customer-presentation-template.md`
 
 ### Phase 13: 완료 보고
 
@@ -231,20 +231,20 @@ user-invocable: true
 ## 산출물 목록
 
 ### 내부용 (경영진)
-- 리서치 보고서:          output/{작품명}/01-research.md
-- 시장 분석 보고서:        output/{작품명}/02-market-analysis.md
-- 문제 가설:              output/{작품명}/03-problem-hypothesis.md
-- 킹핀 & 방향성:          output/{작품명}/04-direction.md
-- 컨셉 후보:              output/{작품명}/05-concept-candidates.md
-- 핵심 공연 컨셉:          output/{작품명}/06-core-concept.md
-- 예산 계획서:             output/{작품명}/07-budget-plan.md
-- 내부 기획 제안서:        output/{작품명}/08-proposal-{작품명}.md
-- 내부 프레젠테이션:       output/{작품명}/10-presentation-{작품명}.md
+- 리서치 보고서:          output/{작품명}/01-리서치.md
+- 시장 분석 보고서:        output/{작품명}/02-시장분석.md
+- 문제 가설:              output/{작품명}/03-문제가설.md
+- 킹핀 & 방향성:          output/{작품명}/04-방향성.md
+- 컨셉 후보:              output/{작품명}/05-컨셉후보.md
+- 핵심 공연 컨셉:          output/{작품명}/06-핵심컨셉.md
+- 예산 계획서:             output/{작품명}/07-예산계획.md
+- 내부 기획 제안서:        output/{작품명}/08-기획제안서-{작품명}.md
+- 내부 프레젠테이션:       output/{작품명}/10-프레젠테이션-{작품명}.md
 
 ### 고객용 (외부)
-- 고객용 제안서 (마크다운): output/{작품명}/11-customer-proposal-{작품명}.md
-- 고객용 제안서 (Word):    output/{작품명}/proposal-client-{작품명}.docx  ← 이미지 삽입 최종본
-- 고객용 프레젠테이션:     output/{작품명}/12-customer-presentation-{작품명}.md
+- 고객용 제안서 (마크다운): output/{작품명}/11-고객제안서-{작품명}.md
+- 고객용 제안서 (Word):    output/{작품명}/고객제안서-{작품명}.docx  ← 이미지 삽입 최종본
+- 고객용 프레젠테이션:     output/{작품명}/12-고객프레젠테이션-{작품명}.md
 
 ### 이미지
 - 컨셉 포스터:             output/{작품명}/images/concept-poster.png
@@ -256,11 +256,11 @@ user-invocable: true
 
 - [ ] Phase 1~12 모두 완료
 - [ ] `output/{작품명}/` 디렉토리에 산출물 파일 존재
-- [ ] 핵심 공연 컨셉(06-core-concept.md) 생성 확인
-- [ ] 내부 기획 제안서(08-proposal-*.md) 생성 확인
-- [ ] 내부 프레젠테이션(10-presentation-*.md) 생성 확인
-- [ ] 고객용 제안서(11-customer-proposal-*.md) 생성 확인
-- [ ] 고객용 프레젠테이션(12-customer-presentation-*.md) 생성 확인
+- [ ] 핵심 공연 컨셉(06-핵심컨셉.md) 생성 확인
+- [ ] 내부 기획 제안서(08-기획제안서-*.md) 생성 확인
+- [ ] 내부 프레젠테이션(10-프레젠테이션-*.md) 생성 확인
+- [ ] 고객용 제안서(11-고객제안서-*.md) 생성 확인
+- [ ] 고객용 프레젠테이션(12-고객프레젠테이션-*.md) 생성 확인
 
 ## 검증 프로토콜
 
@@ -299,18 +299,18 @@ Phase 13에서 모든 산출물 파일 존재 확인.
 
 | 파일 존재 여부 | 재개 시작 Phase |
 |-------------|----------------|
-| 01-research.md 없음 | Phase 1 |
-| 02-market-analysis.md 없음 | Phase 2 |
-| 03-problem-hypothesis.md 없음 | Phase 3 |
-| 04-direction.md 없음 | Phase 4 |
-| 05-concept-candidates.md 없음 | Phase 5 |
-| 06-core-concept.md 없음 | Phase 6 |
-| 07-budget-plan.md 없음 | Phase 7 |
-| 08-proposal-*.md 없음 | Phase 8 |
+| 01-리서치.md 없음 | Phase 1 |
+| 02-시장분석.md 없음 | Phase 2 |
+| 03-문제가설.md 없음 | Phase 3 |
+| 04-방향성.md 없음 | Phase 4 |
+| 05-컨셉후보.md 없음 | Phase 5 |
+| 06-핵심컨셉.md 없음 | Phase 6 |
+| 07-예산계획.md 없음 | Phase 7 |
+| 08-기획제안서-*.md 없음 | Phase 8 |
 | images/ 없음 | Phase 9 |
-| 10-presentation-*.md 없음 | Phase 10 |
-| 11-customer-proposal-*.md 없음 | Phase 11 |
-| 12-customer-presentation-*.md 없음 | Phase 12 |
+| 10-프레젠테이션-*.md 없음 | Phase 10 |
+| 11-고객제안서-*.md 없음 | Phase 11 |
+| 12-고객프레젠테이션-*.md 없음 | Phase 12 |
 
 ## MUST 규칙
 

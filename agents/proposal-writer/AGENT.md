@@ -17,7 +17,7 @@ description: 공연 기획 제안서 및 프레젠테이션 개요 문서 작성
 - **[필수] 극단 고정 정보**: `resources/company-profile.md` — 캐스팅 및 예산 제약 반드시 확인
 - 기획 제안서 템플릿: `resources/templates/proposal-template.md`
 - 프레젠테이션 템플릿: `resources/templates/presentation-outline-template.md`
-- 선행 분석 결과: `output/{작품명}/01-research.md`, `output/{작품명}/02-market-analysis.md`, `output/{작품명}/07-budget-plan.md`
+- 선행 분석 결과: `output/{작품명}/01-리서치.md`, `output/{작품명}/02-시장분석.md`, `output/{작품명}/07-예산계획.md`
 
 ## 워크플로우
 
@@ -29,35 +29,35 @@ description: 공연 기획 제안서 및 프레젠테이션 개요 문서 작성
 3. `{tool:file_read}`로 선행 분석 결과 모두 로드
 4. `{tool:file_read}`로 `resources/templates/proposal-template.md` 로드
 5. 템플릿을 기반으로 분석 데이터를 통합하여 기획 제안서 작성
-6. `{tool:file_write}`로 `output/{작품명}/08-proposal-{작품명}.md` 저장
+6. `{tool:file_write}`로 `output/{작품명}/08-기획제안서-{작품명}.md` 저장
 
 ### 프레젠테이션 개요 작성 (Phase 10)
 
-1. `{tool:file_read}`로 `output/{작품명}/08-proposal-{작품명}.md` 및 이미지 목록 로드
+1. `{tool:file_read}`로 `output/{작품명}/08-기획제안서-{작품명}.md` 및 이미지 목록 로드
 2. `{tool:file_read}`로 `resources/templates/presentation-outline-template.md` 로드
 3. 제안서 내용을 슬라이드 개요로 변환
 4. 생성된 이미지 삽입 위치를 슬라이드에 표시
-5. `{tool:file_write}`로 `output/{작품명}/10-presentation-{작품명}.md` 저장
+5. `{tool:file_write}`로 `output/{작품명}/10-프레젠테이션-{작품명}.md` 저장
 
 ### 고객용 제안서 작성 (Phase 11) — Word 출력
 
 1. `{tool:file_read}`로 내부 기획 제안서·핵심 컨셉 파일 로드
 2. `{tool:file_read}`로 `resources/templates/customer-proposal-template.md` 로드
 3. 고객 언어(교사·학부모)로 제안서 마크다운 초안 작성
-4. `{tool:file_write}`로 `output/{작품명}/11-customer-proposal-{작품명}.md` 저장
+4. `{tool:file_write}`로 `output/{작품명}/11-고객제안서-{작품명}.md` 저장
 5. **[필수] Word 변환**: Bash 도구로 아래 명령 실행:
    ```bash
    python gateway/tools/generate_docx.py \
-     --input output/{작품명}/11-customer-proposal-{작품명}.md \
-     --output output/{작품명}/proposal-client-{작품명}.docx \
+     --input output/{작품명}/11-고객제안서-{작품명}.md \
+     --output output/{작품명}/고객제안서-{작품명}.docx \
      --image-base output/{작품명}/images
    ```
 6. `.docx` 파일 생성 확인 후 완료 보고
 
 ## 출력 형식
 
-기획 제안서: `output/{작품명}/08-proposal-{작품명}.md` (7섹션 + 부록)
-프레젠테이션 개요: `output/{작품명}/10-presentation-{작품명}.md` (9슬라이드 구조)
+기획 제안서: `output/{작품명}/08-기획제안서-{작품명}.md` (7섹션 + 부록)
+프레젠테이션 개요: `output/{작품명}/10-프레젠테이션-{작품명}.md` (9슬라이드 구조)
 
 ## 이미지 경로 규칙
 

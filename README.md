@@ -240,18 +240,18 @@ DMAP Web의 `plugins.json`에 TPM 프로젝트 경로를 수동으로 추가합�
 
 | Phase | 단계 | 담당 에이전트 | 산출물 |
 |-------|------|--------------|--------|
-| 1 | 작품 리서치 | researcher | `01-research.md` |
-| 2 | 시장·관객 분석 | market-analyst | `02-market-analysis.md` |
-| 3 | 문제 가설 설정 | market-analyst | `03-problem-hypothesis.md` |
-| 4 | 킹핀 & 방향성 정의 | market-analyst | `04-direction.md` |
-| 5 | 공연 컨셉 후보 도출 | market-analyst + proposal-writer (병렬) | `05-concept-candidates.md` |
-| 6 | 핵심 컨셉 선정 | market-analyst + proposal-writer (병렬) | `06-core-concept.md` + `06-concept-matrix.svg` |
-| 7 | 예산 계획 | budget-planner | `07-budget-plan.md` |
-| 8 | 기획 제안서 작성 | proposal-writer | `08-proposal-{작품명}.md` |
+| 1 | 작품 리서치 | researcher | `01-리서치.md` |
+| 2 | 시장·관객 분석 | market-analyst | `02-시장분석.md` |
+| 3 | 문제 가설 설정 | market-analyst | `03-문제가설.md` |
+| 4 | 킹핀 & 방향성 정의 | market-analyst | `04-방향성.md` |
+| 5 | 공연 컨셉 후보 도출 | market-analyst + proposal-writer (병렬) | `05-컨셉후보.md` |
+| 6 | 핵심 컨셉 선정 | market-analyst + proposal-writer (병렬) | `06-핵심컨셉.md` + `06-컨셉매트릭스.svg` |
+| 7 | 예산 계획 | budget-planner | `07-예산계획.md` |
+| 8 | 기획 제안서 작성 | proposal-writer | `08-기획제안서-{작품명}.md` |
 | 9 | 컨셉 이미지 생성 | visual-creator | `images/` |
-| 10 | 프레젠테이션 구성 | proposal-writer | `10-presentation-{작품명}.md` |
-| 11 | 고객용 제안서 작성 | proposal-writer | `11-customer-proposal-{작품명}.md` + `proposal-client-{작품명}.docx` |
-| 12 | 고객용 프레젠테이션 | proposal-writer | `12-customer-presentation-{작품명}.md` |
+| 10 | 프레젠테이션 구성 | proposal-writer | `10-프레젠테이션-{작품명}.md` |
+| 11 | 고객용 제안서 작성 | proposal-writer | `11-고객제안서-{작품명}.md` + `고객제안서-{작품명}.docx` |
+| 12 | 고객용 프레젠테이션 | proposal-writer | `12-고객프레젠테이션-{작품명}.md` |
 
 ### 단계별 상세
 
@@ -301,25 +301,25 @@ Gemini 기반으로 컨셉 포스터 1장, 작품개요·기획의도 인포그�
 
 | 파일 | Phase | 설명 |
 |------|:-----:|------|
-| `01-research.md` | 1 | 작품 리서치 결과 (유사 공연 레퍼런스 포함) |
-| `02-market-analysis.md` | 2 | 시장·관객 분석 결과 |
-| `03-problem-hypothesis.md` | 3 | 문제 가설 · 5WHY 분석 · 비즈니스 가치 |
-| `04-direction.md` | 4 | 킹핀 문제 선정 · Needs Statement |
-| `05-concept-candidates.md` | 5 | 공연 컨셉 후보 3~5개 |
-| `06-core-concept.md` | 6 | 핵심 공연 컨셉 (3개 이하) |
-| `06-concept-matrix.svg` | 6 | 컨셉 우선순위 매트릭스 시각화 |
-| `07-budget-plan.md` | 7 | 항목별 예산 상세 · BEP 분석 |
-| `08-proposal-{작품명}.md` | 8 | 내부 기획 제안서 (7섹션 + 부록) |
+| `01-리서치.md` | 1 | 작품 리서치 결과 (유사 공연 레퍼런스 포함) |
+| `02-시장분석.md` | 2 | 시장·관객 분석 결과 |
+| `03-문제가설.md` | 3 | 문제 가설 · 5WHY 분석 · 비즈니스 가치 |
+| `04-방향성.md` | 4 | 킹핀 문제 선정 · Needs Statement |
+| `05-컨셉후보.md` | 5 | 공연 컨셉 후보 3~5개 |
+| `06-핵심컨셉.md` | 6 | 핵심 공연 컨셉 (3개 이하) |
+| `06-컨셉매트릭스.svg` | 6 | 컨셉 우선순위 매트릭스 시각화 |
+| `07-예산계획.md` | 7 | 항목별 예산 상세 · BEP 분석 |
+| `08-기획제안서-{작품명}.md` | 8 | 내부 기획 제안서 (7섹션 + 부록) |
 | `images/` | 9 | 컨셉 포스터·장면 이미지 (PNG) |
-| `10-presentation-{작품명}.md` | 10 | 내부 프레젠테이션 개요 (10슬라이드) |
+| `10-프레젠테이션-{작품명}.md` | 10 | 내부 프레젠테이션 개요 (10슬라이드) |
 
 ### 고객용 (외부)
 
 | 파일 | Phase | 설명 |
 |------|:-----:|------|
-| `11-customer-proposal-{작품명}.md` | 11 | 고객용 제안서 마크다운 초안 |
-| `proposal-client-{작품명}.docx` | 11 | 고객용 제안서 Word 파일 (이미지 삽입 최종본) |
-| `12-customer-presentation-{작품명}.md` | 12 | 고객용 프레젠테이션 개요 (7슬라이드) |
+| `11-고객제안서-{작품명}.md` | 11 | 고객용 제안서 마크다운 초안 |
+| `고객제안서-{작품명}.docx` | 11 | 고객용 제안서 Word 파일 (이미지 삽입 최종본) |
+| `12-고객프레젠테이션-{작품명}.md` | 12 | 고객용 프레젠테이션 개요 (7슬라이드) |
 
 ### 이미지 파일 (Phase 9)
 
@@ -412,9 +412,9 @@ tpm/
 │       └── customer-presentation-template.md
 ├── output/                          # 작품별 산출물 저장소
 │   └── {작품명}/
-│       ├── 01-research.md ~ 12-*.md
+│       ├── 01-리서치.md ~ 12-*.md
 │       ├── images/
-│       └── proposal-client-{작품명}.docx
+│       └── 고객제안서-{작품명}.docx
 └── README.md
 ```
 

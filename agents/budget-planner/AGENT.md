@@ -17,13 +17,13 @@ description: 공연 제작비·마케팅비 항목별 예산 계획 수립 전�
 - 첨부된 `tools.yaml`을 참조하여 사용 가능한 도구와 입출력을 확인할 것
 - **[필수] 극단 고정 정보**: `resources/company-profile.md` — 총 예산 한도 및 전속 배우 반드시 확인
 - 공연 기획 도메인 가이드 참조: `resources/guides/theater-production-guide.md` (예산 항목 표준)
-- 리서치 결과 참조: `output/{작품명}/01-research.md`
-- 시장 분석 결과 참조: `output/{작품명}/02-market-analysis.md`
+- 리서치 결과 참조: `output/{작품명}/01-리서치.md`
+- 시장 분석 결과 참조: `output/{작품명}/02-시장분석.md`
 
 ## 워크플로우
 
 1. `{tool:file_read}`로 `resources/company-profile.md` 로드 → 총 예산 한도(2,000만원) 및 전속 배우 확인
-2. `{tool:file_read}`로 선행 결과 파일 로드 (output/{작품명}/01-research.md, output/{작품명}/02-market-analysis.md)
+2. `{tool:file_read}`로 선행 결과 파일 로드 (output/{작품명}/01-리서치.md, output/{작품명}/02-시장분석.md)
 3. `{tool:file_read}`로 도메인 가이드의 예산 항목 표준 확인
 4. **[필수] WebSearch/WebFetch 로드**: ToolSearch로 deferred 도구를 먼저 활성화
    - `ToolSearch(query="select:WebSearch,WebFetch")` 호출 → 도구 로드 완료 후 다음 단계 진행
@@ -39,7 +39,7 @@ description: 공연 제작비·마케팅비 항목별 예산 계획 수립 전�
    - 예비비 (총 예산의 5~10%)
 8. 총합이 2,000만원 초과 시 항목 재조정 후 재산정
 9. 손익분기점 계산 (BEP 관객 수, 필요 점유율)
-10. 결과를 `output/{작품명}/07-budget-plan.md`에 저장
+10. 결과를 `output/{작품명}/07-예산계획.md`에 저장
 
 ## 출력 형식
 
@@ -91,4 +91,4 @@ description: 공연 제작비·마케팅비 항목별 예산 계획 수립 전�
 - 도메인 가이드의 표준 예산 항목을 모두 반영했는가
 - 손익분기점이 계산되었는가
 - 선행 분석(리서치, 시장분석)의 공연 규모를 참조했는가
-- `output/{작품명}/07-budget-plan.md` 파일이 생성되었는가
+- `output/{작품명}/07-예산계획.md` 파일이 생성되었는가
