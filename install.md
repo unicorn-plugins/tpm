@@ -141,28 +141,6 @@ claude
 
 ---
 
-## Oh My ClaudeCode (OMC) 설치
-OMC는 Claude Code를 더 잘 사용하기 위한 플러그인입니다.    
-  
-Claude Code 실행 후 프롬프트에서 순차 수행:
-```
-claude
-```
-
-아래 명령 수행  
-```
-/plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode
-/plugin install oh-my-claudecode
-```
-
-아래 명령으로 셋업 수행. Setup 시 MCP는 context7만 설치  
-```
-/oh-my-claudecode:omc-setup
-```
-
-| [Top](#로컬-개발-환경-구성) |
-
----
 
 ## Claude Code 편의 명령어 설정    
 Claude Code의 CLI인 'claude'의 단축어를 등록합니다.   
@@ -212,6 +190,29 @@ function cy { cc-yolo @args }
 - cy: cc-yolo와 동일함. 기본값을 바꾸고 싶으면 alias설정을 변경하면 됨      
 
 편의 명령을 설정한 터미널을 모두 닫고 새 터미널을 열어 명령이 동작하는지 확인합니다.
+
+---
+
+## Oh My ClaudeCode (OMC) 설치
+OMC는 Claude Code를 더 잘 사용하기 위한 플러그인입니다.    
+  
+Claude Code 실행 후 프롬프트에서 순차 수행:
+```
+claude
+```
+
+아래 명령 수행  
+```
+/plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode
+/plugin install oh-my-claudecode
+```
+
+아래 명령으로 셋업 수행. Setup 시 MCP는 context7만 설치  
+```
+/oh-my-claudecode:omc-setup
+```
+
+| [Top](#로컬-개발-환경-구성) |
 
 ---
 
