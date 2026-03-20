@@ -1,6 +1,5 @@
 
-# 로컬 개발 환경 구성
-
+# 로컬 환경 구성
 
 ## Git Client 설치
 ### 설치
@@ -36,7 +35,7 @@ LegacyGeneric:target=git:https://github.com
 ### Git 사용법
 https://happycloud-lee.tistory.com/93
 
-| [Top](#로컬-개발-환경-구성) |
+| [Top](#로컬-환경-구성) |
 
 ---
 
@@ -62,7 +61,7 @@ Git Bash 터미널에선 Linux의 명령을 사용할 수 있어 매우 유용�
   새 창을 열면 기본이 Git Bash로 나오면 됩니다.  
 
 
-| [Top](#로컬-개발-환경-구성) |
+| [Top](#로컬-환경-구성) |
 
 ---
 
@@ -75,7 +74,7 @@ Interpreter 언어를 개발할 때 사용하는 IDE(Integrated Development Envi
 다운로드 페이지에 접속하여 설치파일을 다운로드하여 설치: [vscode설치](https://code.visualstudio.com/download) 
 
 
-| [Top](#로컬-개발-환경-구성) |
+| [Top](#로컬-환경-구성) |
 
 ---
 
@@ -137,7 +136,7 @@ claude
 > claude install 
 > ```
 
-| [Top](#로컬-개발-환경-구성) |
+| [Top](#로컬-환경-구성) |
 
 ---
 
@@ -212,7 +211,7 @@ claude
 /oh-my-claudecode:omc-setup
 ```
 
-| [Top](#로컬-개발-환경-구성) |
+| [Top](#로컬-환경-구성) |
 
 ---
 
